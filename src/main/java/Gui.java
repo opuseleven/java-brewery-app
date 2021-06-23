@@ -15,7 +15,7 @@ public class Gui {
         
         JFrame frame = new JFrame("Brewery Search");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 400);
+        frame.setSize(500, 400);
         
         JMenuBar menuBar = new JMenuBar();
         JMenu file = new JMenu("File");
@@ -40,7 +40,7 @@ public class Gui {
         
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
-        frame.getContentPane().add(BorderLayout.CENTER, searchBar);
+        // frame.getContentPane().add(BorderLayout.CENTER, searchBar);
         frame.setVisible(true);
         
         
