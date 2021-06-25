@@ -12,6 +12,7 @@ import java.util.Scanner;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
+import com.google.gson.Gson;
 /**
  *
  * @author cody
@@ -21,7 +22,7 @@ public class Gui {
     private JTextField searchBar;
     
     public ArrayList<Brewery> search(String searchedTerm) {
-        ArrayList<Brewery> breweriesReturned;
+        ArrayList<Brewery> breweriesReturned = new ArrayList<>();
         try {
             URL url = new URL("https://api.openbrewerydb.org/breweries"
                 + "/search?query=" + searchBar.getText());
@@ -49,7 +50,9 @@ public class Gui {
                 JSONArray array = (JSONArray) jsonBrewery.get("Object");
                 
                 for (int i = 0; i < array.size(); i++) {
-                    JSONObject newBrewery = (JSONObject) array.get(i);
+                    JSONObject newBreweryObject = (JSONObject) array.get(i);
+                    Gson gson = new Gson();
+                    Brewery newBrewery = gson.fromJson(newBreweryObject.toString(), Brewery.class);
                     breweriesReturned.add(newBrewery);
                 }
             }
@@ -57,6 +60,10 @@ public class Gui {
             e.printStackTrace();
         }
         return breweriesReturned;
+    }
+    
+    public String getSearchTerm() {
+        return searchBar.getText();
     }
     
     public Gui() {
@@ -83,9 +90,10 @@ public class Gui {
         panel.add(searchBar);
         panel.add(searchButton);
         
-        searchButton.addActionListener(e ->
-            System.out.println("Searching..."));
-        
+        searchButton.addActionListener(e -> {
+            System.out.println("Searching...");
+            
+        });
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
         // frame.getContentPane().add(BorderLayout.CENTER, searchBar);
