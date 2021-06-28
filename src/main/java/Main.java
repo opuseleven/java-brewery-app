@@ -23,16 +23,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         URL url = new URL("https://api.openbrewerydb.org/breweries/search");
-        String searchTerm = gui.getSearchTerm();
-        ArrayList<Brewery> breweryResults = gui.search(searchTerm);
         
-        
-        if (breweryResults != null) {
-            for (int i = 0; i < breweryResults.size(); i++) {
-                Brewery thisBrewery = breweryResults(i);
-                thisBrewery.printBrewery();
-            }
-        }
     }
     
 }

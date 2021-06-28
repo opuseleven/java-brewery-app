@@ -10,13 +10,13 @@
  */
 public class Brewery {
     
-    private int id;
-    private String name;
-    private String breweryType;
-    private String street;
-    private String city;
-    private String state;
-    private String breweryUrl;
+    private final int id;
+    private final String name;
+    private final String breweryType;
+    private final String street;
+    private final String city;
+    private final String state;
+    private final String breweryUrl;
     
     public Brewery(int id, String name, String breweryType, String street, String city, String state, String breweryUrl) {
         this.id = id;
@@ -48,7 +48,12 @@ public class Brewery {
     }
     
     public void printBrewery() {
-        
+        String breweryInfo = "";
+        breweryInfo += this.getName();
+        breweryInfo += "\n" + this.getBreweryType();
+        breweryInfo += "\n" + this.getStreet() + " "
+                + this.getCity() + ", " + this.getState();
+        breweryInfo += "\n" + this.getBreweryUrl();
+        System.out.println(breweryInfo);
     }
-    
 }

@@ -25,7 +25,7 @@ public class Gui {
         ArrayList<Brewery> breweriesReturned = new ArrayList<>();
         try {
             URL url = new URL("https://api.openbrewerydb.org/breweries"
-                + "/search?query=" + searchBar.getText());
+                + "/search?query=" + searchedTerm);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
@@ -92,7 +92,12 @@ public class Gui {
         
         searchButton.addActionListener(e -> {
             System.out.println("Searching...");
-            
+            String searchedTerm = getSearchTerm();
+            ArrayList<Brewery> data = search(searchedTerm);
+            for (int i = 0; i < data.size() || i < 10; i++) {
+                Brewery breweryToPrint = data.get(i);
+                breweryToPrint.printBrewery();
+            }
         });
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
