@@ -32,7 +32,10 @@ public class Brewery {
         return this.name;
     }
     public String getBreweryType() {
-        return this.brewery_type;
+        String type = this.brewery_type.substring(0, 1).toUpperCase()
+                + this.brewery_type.substring(1);
+        String formattedType = "Brewery Type: " + type;
+        return formattedType;
     }
     public String getStreet() {
         return this.street;

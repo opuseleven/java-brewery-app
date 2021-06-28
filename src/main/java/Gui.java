@@ -64,7 +64,16 @@ public class Gui {
     }
     
     public String getSearchTerm() {
-        return searchBar.getText();
+        String searchText = searchBar.getText();
+        char[] characters = searchText.toCharArray();
+        for (int i = 0; i < characters.length; i++) {
+            if (characters[i] == ' ') {
+                characters[i] = '_';
+            }
+        }
+        String formattedSearch = new String(characters);
+        System.out.println(formattedSearch);
+        return formattedSearch;
     }
     
     public Gui() {
@@ -91,10 +100,13 @@ public class Gui {
         panel.add(searchBar);
         panel.add(searchButton);
         
+        // To do: account for pressing enter key to search
+        
         searchButton.addActionListener(e -> {
             System.out.println("Searching...");
             String searchedTerm = getSearchTerm();
             ArrayList<Brewery> data = search(searchedTerm);
+            System.out.println(data.size());
             for (int i = 0; i < data.size() || i < 10; i++) {
                 Brewery breweryToPrint = data.get(i);
                 breweryToPrint.printBrewery();
