@@ -45,10 +45,6 @@ public class Gui {
                 JSONParser parser = new JSONParser();
                 JSONArray jsonBreweryArray = (JSONArray) parser.parse(inline);
                 System.out.println(jsonBreweryArray);
-                // JSONObject breweryObject = (JSONObject) jsonBrewery.get("Global");
-                // System.out.println(breweryObject.get("TotalRecovered"));
-                
-                // JSONArray array = (JSONArray) jsonBrewery.get("Object");
                 
                 for (int i = 0; i < jsonBreweryArray.size(); i++) {
                     JSONObject newBreweryObject = (JSONObject) jsonBreweryArray.get(i);
@@ -100,8 +96,6 @@ public class Gui {
         panel.add(searchBar);
         panel.add(searchButton);
         
-        // To do: account for pressing enter key to search
-        
         searchButton.addActionListener(e -> {
             System.out.println("Searching...");
             String searchedTerm = getSearchTerm();
@@ -114,7 +108,7 @@ public class Gui {
         });
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
-        // frame.getContentPane().add(BorderLayout.CENTER, searchBar);
+        frame.getRootPane().setDefaultButton(searchButton);
         frame.setVisible(true);
         
         
