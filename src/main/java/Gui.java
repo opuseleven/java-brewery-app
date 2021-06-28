@@ -43,14 +43,15 @@ public class Gui {
                 scanner.close();
                 
                 JSONParser parser = new JSONParser();
-                JSONObject jsonBrewery = (JSONObject) parser.parse(inline);
-                JSONObject breweryObject = (JSONObject) jsonBrewery.get("Global");
-                System.out.println(breweryObject.get("TotalRecovered"));
+                JSONArray jsonBreweryArray = (JSONArray) parser.parse(inline);
+                System.out.println(jsonBreweryArray);
+                // JSONObject breweryObject = (JSONObject) jsonBrewery.get("Global");
+                // System.out.println(breweryObject.get("TotalRecovered"));
                 
-                JSONArray array = (JSONArray) jsonBrewery.get("Object");
+                // JSONArray array = (JSONArray) jsonBrewery.get("Object");
                 
-                for (int i = 0; i < array.size(); i++) {
-                    JSONObject newBreweryObject = (JSONObject) array.get(i);
+                for (int i = 0; i < jsonBreweryArray.size(); i++) {
+                    JSONObject newBreweryObject = (JSONObject) jsonBreweryArray.get(i);
                     Gson gson = new Gson();
                     Brewery newBrewery = gson.fromJson(newBreweryObject.toString(), Brewery.class);
                     breweriesReturned.add(newBrewery);

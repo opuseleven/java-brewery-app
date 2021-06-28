@@ -12,27 +12,27 @@ public class Brewery {
     
     private final int id;
     private final String name;
-    private final String breweryType;
+    private final String brewery_type;
     private final String street;
     private final String city;
     private final String state;
-    private final String breweryUrl;
+    private final String website_url;
     
     public Brewery(int id, String name, String breweryType, String street, String city, String state, String breweryUrl) {
         this.id = id;
         this.name = name;
-        this.breweryType = breweryType;
+        this.brewery_type = breweryType;
         this.street = street;
         this.city = city;
         this.state = state;
-        this.breweryUrl = breweryUrl;
+        this.website_url = breweryUrl;
     }
     
     public String getName() {
         return this.name;
     }
     public String getBreweryType() {
-        return this.breweryType;
+        return this.brewery_type;
     }
     public String getStreet() {
         return this.street;
@@ -44,7 +44,7 @@ public class Brewery {
         return this.state;
     }
     public String getBreweryUrl() {
-        return this.breweryUrl;
+        return this.website_url;
     }
     
     public void printBrewery() {
