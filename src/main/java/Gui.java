@@ -13,6 +13,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
 import com.google.gson.Gson;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.text.DefaultCaret;
 /**
  *
  * @author cody
@@ -20,6 +23,7 @@ import com.google.gson.Gson;
 public class Gui {
     
     private JTextField searchBar;
+    private JTextArea resultsTextArea;
     
     public ArrayList<Brewery> search(String searchedTerm) {
         ArrayList<Brewery> breweriesReturned = new ArrayList<>();
@@ -91,7 +95,11 @@ public class Gui {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Enter search terms: ");
         searchBar = new JTextField(20);
+        resultsTextArea = new JTextArea("");
+        resultsTextArea.setEditable(false);
         JButton searchButton = new JButton("Search");
+        JScrollPane scrollPane = new JScrollPane(resultsTextArea);
+        panel.add(scrollPane);
         panel.add(label);
         panel.add(searchBar);
         panel.add(searchButton);
@@ -103,12 +111,30 @@ public class Gui {
             System.out.println(data.size());
             for (int i = 0; i < data.size() || i < 10; i++) {
                 Brewery breweryToPrint = data.get(i);
-                breweryToPrint.printBrewery();
+                System.out.println(breweryToPrint.getBreweryInfo());
+                resultsTextArea.append(breweryToPrint.getBreweryInfo());
+                resultsTextArea.append("\n");
             }
         });
+        JScrollBar vertical = scrollPane.createVerticalScrollBar();
+        
+        DefaultCaret caret = (DefaultCaret) this.searchBar.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        
+        caret.setVisible(true);
+        this.searchBar.setText("");
+        
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
+        frame.getContentPane().add(scrollPane);
         frame.getRootPane().setDefaultButton(searchButton);
+        
+        frame.addWindowFocusListener(new WindowAdapter() {
+            public void windowGainedFocus(WindowEvent e) {
+                searchBar.requestFocusInWindow();
+            }
+        });
+        
         frame.setVisible(true);
         
         

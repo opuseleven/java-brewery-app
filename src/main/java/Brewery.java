@@ -50,13 +50,13 @@ public class Brewery {
         return this.website_url;
     }
     
-    public void printBrewery() {
+    public String getBreweryInfo() {
         String breweryInfo = "";
         breweryInfo += this.getName();
         breweryInfo += "\n" + this.getBreweryType();
         breweryInfo += "\n" + this.getStreet() + " "
                 + this.getCity() + ", " + this.getState();
-        breweryInfo += "\n" + this.getBreweryUrl();
-        System.out.println(breweryInfo);
+        breweryInfo += "\n" + this.getBreweryUrl() + "\n";
+        return breweryInfo;
     }
 }
