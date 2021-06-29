@@ -109,7 +109,7 @@ public class Gui {
             String searchedTerm = getSearchTerm();
             ArrayList<Brewery> data = search(searchedTerm);
             System.out.println(data.size());
-            for (int i = 0; i < data.size() || i < 10; i++) {
+            for (int i = 0; (i < data.size()); i++) {
                 Brewery breweryToPrint = data.get(i);
                 System.out.println(breweryToPrint.getBreweryInfo());
                 resultsTextArea.append(breweryToPrint.getBreweryInfo());
