@@ -84,12 +84,16 @@ public class Gui {
         
         JMenuBar menuBar = new JMenuBar();
         JMenu file = new JMenu("File");
+        JMenu edit = new JMenu("Edit");
         JMenu help = new JMenu("Help");
         menuBar.add(file);
+        menuBar.add(edit);
         menuBar.add(help);
         JMenuItem quitButton = new JMenuItem("Quit");
+        JMenuItem clearButton = new JMenuItem("Clear Results");
         JMenuItem helpButton = new JMenuItem("Help");
         file.add(quitButton);
+        edit.add(clearButton);
         help.add(helpButton);
         
         JPanel panel = new JPanel();
@@ -115,6 +119,10 @@ public class Gui {
                 resultsTextArea.append(breweryToPrint.getBreweryInfo());
                 resultsTextArea.append("\n");
             }
+        });
+        clearButton.addActionListener(e -> {
+            resultsTextArea.setText("");
+            searchBar.setText("");
         });
         JScrollBar vertical = scrollPane.createVerticalScrollBar();
         
