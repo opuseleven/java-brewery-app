@@ -124,6 +124,9 @@ public class Gui {
             resultsTextArea.setText("");
             searchBar.setText("");
         });
+        quitButton.addActionListener(e -> {
+            System.exit(0);
+        });
         JScrollBar vertical = scrollPane.createVerticalScrollBar();
         
         DefaultCaret caret = (DefaultCaret) this.searchBar.getCaret();
